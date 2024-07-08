@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo</title>
+    {% load static %}
+    <!--custom css link-->
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <link rel="stylesheet" href="{% static 'css/catalogo.css'%}">
+    
+    <!--custom boxicons-->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"rel="stylesheet"/>
+
+    <!--google fonts link-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <style>
+        .image-container {
+            display: inline-block;
+            margin-top: 50px;
+            margin-left: 250px;
+        }
+        aside {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            padding: 15px;
+            background-color: #34494a;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            transform: translateX(-100%);
+            transition: transform 0.9s ease;
+            z-index: 10;
+        }
+        .image-container img {
+            cursor: pointer;
+        }
+        .image-container img:hover {
+            transform: rotate(0.025turn);
+            transition: transform 1.5s ease;
+        }
+        aside.show {
+            transform: translateX(0);
+        }
+        
+    </style>
+</head>
+<body background="{% static '/img/Background.png' %}">
+    <!--header design-->
+    <header>
+        <a href="{% url 'index' %}" class="logo"><span><i class="fa-solid fa-arrow-left"></i> Volver al inicio</span></a>
+
+        <ul class="navbar">
+            <li><a href="{% url 'index' %}">Inicio</a></li>
+            <li><a href="{% url 'informacion'%}">Información</a></li>
+            <li><a href="#">Catálogo</a></li>
+        </ul>
+
+        <div class="h-right">
+            <a href="">Siguenos</a>
+            <a href=""><i class="ri-instagram-fill"></i></a>
+            <a href=""><i class="ri-twitter-x-fill"></i></a>
+            <a href=""><i class="ri-facebook-fill"></i></a>
+            <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
+    </header> <br><br>
+
+    <div class="image-container" data-content="1">
+        <img src="{% static '/img/nap1.jpg' %}" alt="Haz click aquí" width="200">
+    </div>
+
+    <div class="image-container" data-content="2">
+        <img src="{% static '/img/nap2.jpg' %}" alt="Haz click aquí" width="200">
+    </div>
+
+    <div class="image-container" data-content="3">
+        <img src="{% static '/img/nap3.jpg' %}" alt="Haz click aquí" width="200">
+    </div>
+
+    <div class="image-container" data-content="4">
+        <img src="{% static '/img/nap4.jpg' %}" alt="Haz click aquí" width="200">
+    </div>
+
+    <aside id="aside" style="padding-top: 50px;">
+        <p id="aside-content">Este es el contenido del aside que se despliega al hacer click en la imagen.</p>
+    </aside>
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <div class="row" style="padding: 5px 0;">
+                    <div class="col-12">
+                        <div class="row">
+                            {% for serv in servicio %}
+                                <div class="col-6">
+                                    <div class="card text-center" style="background-color: transparent;">
+                                        {% if serv.imagen %}
+                                            <img src="{{ serv.imagen.url }}" class="card-img-top mx-auto">
+                                        {% else %}
+                                            <p>Imagen no insertada por administración</p>
+                                        {% endif %}
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="font-weight:bold;"> Id : {{ serv.idServicio }}
+                                            </h5>
+                                            <p class="card-text" style="color: aqua;">
+                                                Servicio : {{ serv.nombre }}<br>
+                                                Descripción : {{ serv.descripcion }}<br>
+                                                Precio : ${{ serv.precio }}<br>
+                                                Stock : {{ serv.stock }}<br>
+                                            </p>
+                                            <a href="{% url 'agregar_producto' serv.idServicio %}"
+                                            class="btn btn-outline-success">Agregar al carro</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        const imageContainers = document.querySelectorAll('.image-container');
+        const aside = document.getElementById('aside');
+        const asideContent = document.getElementById('aside-content');
+    
+        imageContainers.forEach(container => {
+            container.addEventListener('click', function() {
+                const contentId = this.getAttribute('data-content');
+                updateAsideContent(contentId);
+                aside.classList.add('show');
+            });
+        });
+    
+        function updateAsideContent(contentId) {
+            let content = '';
+            switch(contentId) {
+                case '1':
+                    content = 'Trekking.';
+                    break;
+                case '2':
+                    content = 'Este es el contenido para la segunda imagen.';
+                    break;
+                case '3':
+                    content = 'Este es el contenido para la tercera imagen.';
+                    break;
+                case '4':
+                    content = 'Este es el contenido para la cuarta imagen.';
+                    break;
+                default:
+                    content = 'Contenido no encontrado.';
+            }
+            asideContent.textContent = content;
+        }
+    
+        document.addEventListener('click', function(event) {
+            if (!aside.contains(event.target) && !event.target.closest('.image-container')) {
+                aside.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <title>Login | Registro</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container" id='container' style="display: block; min-width: none; margin-top: -240px;">
+        <div class="form-container sign-up" style="margin-left: -155px; margin-top: -140px;">
+            <form action="register-login" method="POST">
+                {% csrf_token %}
+                <a href="{% url 'index' %}" class="logo"><span><i class="fa-solid fa-arrow-left"></i> Volver al inicio</span></a>
+                <div>
+                    <a href="{% url 'informacion' %}" class="boton"><i class="fa-solid fa-circle-info"></i>Información</a>
+                    <a href="{% url 'catalogo' %}" class="boton"><i class="fa-solid fa-store"></i>Catálogo</a>
+                </div>
+                <h1>Crear Cuenta</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <span>O usa tu email para registrarte</span>
+                {{ signup_form.as_p}}
+                <button>Registrarse</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form action="register-login" method="POST" style="margin-right: 90px ;margin-top: -180px;">
+                {% csrf_token %}
+                <a href="{% url 'index' %}" class="logo"><span><i class="fa-solid fa-arrow-left"></i> Volver al inicio</span></a>
+                <div>
+                    <a href="{% url 'informacion' %}" class="boton"><i class="fa-solid fa-circle-info"></i>Información</a>
+                    <a href="{% url 'catalogo' %}" class="boton"><i class="fa-solid fa-store"></i>Catálogo</a>
+                </div>
+                <h1>Iniciar sesión</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <span>O usa una contraseña asociada a un email ya registrado</span>
+                {{ login_form.as_p }}
+                <a href="#">Olvidaste tu contraseña?</a>
+                <button>Iniciar Sesión</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Bienvenido devuelta!</h1>
+                    <p>Ingresa tus datos personales para usar todas las funciones del sitio</p>
+                    <button class="hidden" id="login">Iniciar Sesión</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hola, Amig@!</h1>
+                    <p>Regístrate con tus datos personales para usar todas las funciones del sitio</p>
+                    <button class="hidden" id="register">Registrarse</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>

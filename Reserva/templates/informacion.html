@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrVl Hotel</title>
+    {% load static %}
+    <!--custom css link-->
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="shortcut icon" href="{% static 'img/IconoTrVl' %}" type="image/x-icon">
+
+    <!--custom boxicons-->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"rel="stylesheet"/>
+
+      <!--google fonts link-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--header design-->
+    <header>
+        <a href="{% url 'index' %}" class="logo"><span><i class="fa-solid fa-arrow-left"></i>Volver</span></a>
+
+        <ul class="navbar">
+            <li><a href="{% url 'index' %}">Inicio</a></li>
+            <li><a href="#">Información</a></li>
+            <li><a href="#">Sobre nosotros</a></li>
+            <li><a href="{% url 'catalogo' %}">Catálogo</a></li>
+        </ul>
+
+        <div class="h-right">
+            <a href="">Siguenos</a>
+            <a href=""><i class="ri-instagram-fill"></i></a>
+            <a href=""><i class="ri-twitter-x-fill"></i></a>
+            <a href=""><i class="ri-facebook-fill"></i></a>
+            <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
+    </header>
+
+    <section class="home" style="background-image: url({% static 'img/fondiu.jpeg' %});">
+            <div class="home-text" >
+                <h5>Información</h5>
+                <h1>Qué hacemos?</h1>
+                <p>Aquí bajando podrás leer qué es lo que nosotros hacemos y haremos como Paccific Reefs</p> 
+            </div>
+    </section>
+  <!--About us design-->
+    <div class="section">
+        <div class="title">
+            <h1>Sobre nosotros</h1>
+        </div>
+        <div class="services">
+            <div class="card">
+                <div class="icon">
+                    <i class="fas fa-book"></i>
+
+                </div>
+                <h2>VISIÓN</h2>
+                <p>Nosotros como Paciffic Reefs tomamos el concepto de familiaridad y relajo realmente en serio, queriendo reunir a las 
+                    personas en un ambiente cálido y acogedor, pudiendo reconstruir vínculos de todo tipo con nuestro ambiente.
+                </p>
+                <a href="" class="button" style="text-decoration: none;">Saber más</a>    
+            </div>
+            <div class="card">
+                <div class="icon">
+                    <i class="fas fa-globe"></i>
+
+                </div>
+                <h2>MISIÓN</h2>
+                <p>Ser la principal hotelería del sector caracterizándonos por nuestras acogedoras instalaciones, reconocida por 
+                    nuestros servicios y la calidad de vida que podemos otorgar a nuestros clientes.</p>
+                <a href=""  class="button" style="text-decoration: none;">Saber más</a>
+            </div>
+            <div class="card">
+                <div class="icon">
+                    <i class="fas fa-pencil"></i>
+
+                </div>
+                <h2>OBJETIVO</h2>
+                <p>Nuestro objetivo es facilitar a nuestros turistas la comodidad de tener un lugar para descansar y disfrutar de la naturaleza, 
+                    mediante una serie de panoramas.</p>
+                <a href=""  class="button" style="text-decoration: none;">Saber más</a>
+            </div>
+        </div>
+    </div>
+
+     <!--footer section design-->
+     <section class="footer">
+        <div class="footer-box">
+            <h3>Servicios</h3>
+            <a href="#">Email marketing</a>
+            <a href="#">Campaigns</a>
+            <a href="#">Brandings</a>
+            <a href="#">Offline</a>
+        </div>
+
+        <div class="footer-box">
+            <h3>About</h3>
+            <a href="#">Nuestra historia</a>
+            <a href="#">Beneficios</a>
+            <a href="#">Equipo</a>
+        </div>  
+
+        <div class="footer-box">
+            <h3>Help</h3>
+            <a href="#">FAQs</a>
+            <a href="#">Contact us</a>
+        </div>
+
+        <div class="footer-box">
+            <h3>Social</h3>
+            <div class="social">
+                <a href=""><i class="ri-instagram-fill"></i></a>
+                <a href=""><i class="ri-twitter-x-fill"></i></a>
+                <a href=""><i class="ri-facebook-fill"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!--copyrisht-->
+    <div class="copyright">
+    <p>Copyright 2024. All rights reserved</p>
+    </div>
+    <!--custom js link-->
+    <script src="{% static 'js/script.js'%}"></script>
+    
+</body>
+</html>
